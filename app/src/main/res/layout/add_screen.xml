@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:hint="Start Time"
+        android:ems="10"
+        android:layout_below="@+id/room"
+        android:layout_marginTop="36dp"
+        android:id="@+id/start_time"
+        android:layout_toStartOf="@+id/end_time" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:hint="End Time"
+        android:ems="10"
+        android:layout_below="@+id/start_time"
+        android:layout_toStartOf="@+id/course_starts"
+        android:id="@+id/end_time" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/course_name"
+        android:hint="Course Name"
+        android:layout_marginTop="78dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Subject"
+        android:ems="10"
+        android:id="@+id/subject"
+        android:layout_weight="0.14"
+        android:layout_below="@+id/course_name"
+        android:layout_alignStart="@+id/course_name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Course Code"
+        android:ems="10"
+        android:id="@+id/course_code"
+        android:layout_weight="0.31"
+        android:layout_below="@+id/subject"
+        android:layout_alignStart="@+id/subject" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Building"
+        android:ems="10"
+        android:layout_marginTop="18dp"
+        android:id="@+id/building"
+        android:layout_below="@+id/course_code"
+        android:layout_alignStart="@+id/course_code" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Room"
+        android:ems="10"
+        android:id="@+id/room"
+        android:layout_below="@+id/building"
+        android:layout_alignStart="@+id/building" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:elevation="16dp"
+        android:onClick="addClass"
+        android:layout_marginBottom="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:hint="Course End"
+        android:ems="10"
+        android:id="@+id/course_end"
+        android:layout_below="@+id/end_time"
+        android:layout_alignStart="@+id/room"
+        android:layout_marginStart="109dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:layout_below="@+id/end_time"
+        android:layout_alignEnd="@+id/end_time"
+        android:layout_marginEnd="23dp"
+        android:id="@+id/course_starts"
+        android:hint="Course Start" />
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Course Days"
+        android:id="@+id/course_days"
+        android:layout_alignBaseline="@+id/start_time"
+        android:layout_alignBottom="@+id/start_time"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/course_end" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/dotw"
+        android:layout_alignBaseline="@+id/end_time"
+        android:layout_alignBottom="@+id/end_time"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

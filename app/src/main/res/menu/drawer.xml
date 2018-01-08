@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<group android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/home_"
+        android:checked="false"
+        android:icon="@mipmap/home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/add_class"
+        android:checked="false"
+        android:icon="@mipmap/ic_library_books_black_18dp"
+        android:title="@string/add_class" />
+
+    <item
+        android:id="@+id/add_assignment"
+        android:checked="false"
+        android:icon="@mipmap/ic_note_add_black_18dp"
+        android:title="@string/add_assignment" />
+
+    <item
+        android:id="@+id/location"
+        android:checked="false"
+        android:icon="@mipmap/mapmarker"
+        android:title="@string/location" />
+
+
+    <item
+        android:id="@+id/log_out"
+        android:checked="false"
+        android:icon="@mipmap/ic_exit_to_app_black_18dp"
+        android:title="@string/log_out" />
+
+</group>
+</menu>

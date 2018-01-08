@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/logo_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/small"
+    tools:context="com.example.brown.sb.logo_screen">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_430sdp"
+        card_view:cardBackgroundColor="#000066"
+        card_view:cardElevation="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="131dp"
+                android:layout_height="116dp"
+                android:src="@mipmap/c39982"
+                android:id="@+id/imageView2"
+                android:layout_marginTop="172dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <!--    <ImageView
+                     android:layout_width="121dp"
+                     android:layout_height="126dp"
+                     android:src="@drawable/people_map"
+                     android:id="@+id/imageView4"
+                     android:layout_centerVertical="true"
+                     android:layout_centerHorizontal="true" /> -->
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
