@@ -34,21 +34,21 @@ public class BackgroundRequestTask extends AsyncTask<String, Void, String>{
                 "friend_user4","friend_user5","friend_user6","friend_user7",
                 "friend_user8","friend_user9","friend_user0"};
         REQUEST = "http://gradebook2go.000webhostapp.com/request2.php";
-        PLACE = "http://gradebook2go.000webhostapp.com/place.php";
+        PLACE = "http://gradebook2go.000webhostapp.com/friend_sort.php";
     }
 
     @Override
     protected String doInBackground(String... args) {
         String method = args[0];
         String fre = args[1];
-        String fru = args[2];
-        String un = args[3];
-        String column = args[4];
+        //String fru = args[2];
+        String un = args[2];
+        String name = args[3];
 
         friendRequest.setFrmail(fre);
-        friendRequest.setFrname(fru);
+        //friendRequest.setFrname(fru);
         friendRequest.setUsername(un);
-        friendRequest.setColumn(column);
+        friendRequest.setColumn(name);
 
 //        if(method.equals("request")){
 //
@@ -97,9 +97,9 @@ public class BackgroundRequestTask extends AsyncTask<String, Void, String>{
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
 
                 String data_string = /*URLEncoder.encode("user", "UTF-8") + "=" + URLEncoder.encode(fru, "UTF-8") + "&" + */
-                        URLEncoder.encode("useremail", "UTF-8") + "=" + URLEncoder.encode(fre, "UTF-8")+ "&" +
-                        URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8")+ "&" +
-                        URLEncoder.encode("column", "UTF-8") + "=" + URLEncoder.encode(column, "UTF-8");
+                        URLEncoder.encode("useremail", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8")+ "&" +
+                        URLEncoder.encode("friendemail", "UTF-8") + "=" + URLEncoder.encode(fre, "UTF-8")+ "&" +
+                        URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8");
 
                 bufferedWriter.write(data_string);
                 bufferedWriter.flush();
@@ -124,33 +124,33 @@ public class BackgroundRequestTask extends AsyncTask<String, Void, String>{
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        JSONPull(s);
+        //JSONPull(s);
     }
-
-    public void JSONPull(String result){
-        try {
-            JSONObject root = new JSONObject(result);
-            JSONArray user_data = root.getJSONArray("user_data");
-            for(int i=0; i<user_data.length(); i++) {
-                JSONObject JObj = user_data.getJSONObject(i);
-                if(JObj.has("column")) {
-                    COLUMN = JObj.getString("column");
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if("yes".equals(COLUMN)){
-           BackgroundRequestTask requestTask = new BackgroundRequestTask();
-
-            requestTask.execute("place",friendRequest.getFrmail(),friendRequest.getFrname(),friendRequest.getUsername(),friendRequest.column);
-        }else {
-            int i = 0;
-            String col = COLUMNS[1+i];
-            BackgroundRequestTask requestTask = new BackgroundRequestTask();
-
-            requestTask.execute("request",friendRequest.getFrmail(),friendRequest.getFrname(),friendRequest.getUsername(),col);
-            i++;
-        }
-    }
+//
+//    public void JSONPull(String result){
+//        try {
+//            JSONObject root = new JSONObject(result);
+//            JSONArray user_data = root.getJSONArray("user_data");
+//            for(int i=0; i<user_data.length(); i++) {
+//                JSONObject JObj = user_data.getJSONObject(i);
+//                if(JObj.has("column")) {
+//                    COLUMN = JObj.getString("column");
+//                }
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        if("yes".equals(COLUMN)){
+//           BackgroundRequestTask requestTask = new BackgroundRequestTask();
+//
+//            requestTask.execute("place",friendRequest.getFrmail(),friendRequest.getFrname(),friendRequest.getUsername(),friendRequest.column);
+//        }else {
+//            int i = 0;
+//            String col = COLUMNS[1+i];
+//            BackgroundRequestTask requestTask = new BackgroundRequestTask();
+//
+//            requestTask.execute("request",friendRequest.getFrmail(),friendRequest.getFrname(),friendRequest.getUsername(),col);
+//            i++;
+//        }
+//    }
 }

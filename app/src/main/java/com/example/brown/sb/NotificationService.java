@@ -173,7 +173,7 @@ public class NotificationService extends Service {
     }
 
     public void sendNotification(String clss) {
-        SANotification.setSmallIcon(R.drawable.icon3);
+        SANotification.setSmallIcon(R.drawable.cap);
         SANotification.setTicker("Don't Be Late!");
         SANotification.setWhen(System.currentTimeMillis());
         SANotification.setContentTitle("15 minutes till " + clss);

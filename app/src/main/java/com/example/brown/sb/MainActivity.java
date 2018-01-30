@@ -1,5 +1,6 @@
 package com.example.brown.sb;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -16,22 +17,28 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.wenchao.cardstack.CardStack;
+
+public class MainActivity extends AppCompatActivity implements CardStack.CardEventListener {
 
     private ActionBarDrawerToggle mDrawerToggle;
 
     String count;
     String nm,em;
     courseDatabase cdHelper;
-    SQLiteDatabase db;
+    friendsDatabase fHelper;
+    SQLiteDatabase db,dbs;
     Cursor cursor;
     View nView;
     TextView name, email;
 
+    private CardStack cardStack;
+    private CardAdapter cardAdapter;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
@@ -45,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         openData();
 
+        Intent friendIntent = new Intent(MainActivity.this,FriendService.class);
+        startService(friendIntent);
 
         nm = getSharedPreferences("logInfo",MODE_PRIVATE).getString("name","");
         em = getSharedPreferences("logInfo",MODE_PRIVATE).getString("username","");
@@ -91,8 +100,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openData(){
         cdHelper = new courseDatabase(this);
+        fHelper = new friendsDatabase(this);
         db = cdHelper.helper.getWritableDatabase();
+        dbs = fHelper.helper.getWritableDatabase();
         cdHelper.open();
+        fHelper.open();
     }
 
     public void addClass(View view){
@@ -189,6 +201,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void friendWindow(){
+        if(!fHelper.checkIfEmpty(nm)) {
+            Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.card_layout);
+            dialog.show();
+
+            cardAdapter = new CardAdapter(this, 0);
+            cardStack = (CardStack) findViewById(R.id.cardStack);
+            cardStack.setContentResource(R.layout.card_layout);
+            cardStack.setStackMargin(20);
+            cardStack.setAdapter(cardAdapter);
+
+            cardStack.setListener(this);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -208,4 +237,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean swipeEnd(int i, float v) {
+        return false;
+    }
+
+    @Override
+    public boolean swipeStart(int i, float v) {
+        return false;
+    }
+
+    @Override
+    public boolean swipeContinue(int i, float v, float v1) {
+        return false;
+    }
+
+    @Override
+    public void discarded(int i, int i1) {
+
+    }
+
+    @Override
+    public void topCardTapped() {
+
+    }
 }

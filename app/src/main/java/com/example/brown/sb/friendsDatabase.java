@@ -33,6 +33,28 @@ public class friendsDatabase {
         return c;
     }
 
+    public Cursor getPendingName(String un){
+        String where = helper.KEY_USER+"=?";
+        String[] whereArgs = {un};
+        String[] KEY = new String[]{friendsHelper.KEY_PENDNAME};
+        Cursor c = db.query(true, friendsHelper.TABLE_NAME, KEY, where, whereArgs, null, null, null, null);
+        if(c != null){
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public Cursor getPendingEmail(String un){
+        String where = helper.KEY_USER+"=?";
+        String[] whereArgs = {un};
+        String[] KEY = new String[]{friendsHelper.KEY_PENDEMAIL};
+        Cursor c = db.query(true, friendsHelper.TABLE_NAME, KEY, where, whereArgs, null, null, null, null);
+        if(c != null){
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public Cursor getAllPending(String un){
         String where = helper.KEY_USER+"=?";
         String[] whereArgs = {un};
@@ -49,6 +71,21 @@ public class friendsDatabase {
 
         String where = helper.KEY_PENDEMAIL+"=?";
         String[] whereArgs = {email};
+        String[] KEYS = new String[]{friendsHelper.KEY_PENDEMAIL};
+        Cursor c = dbs.query(true, friendsHelper.TABLE_NAME,KEYS,where,whereArgs,null,null,null,null);
+        if(c.getCount() <= 0){
+            c.close();
+            return false;
+        }
+        c.close();
+        return true;
+    }
+
+    public boolean checkIfEmpty(String un){
+        open();
+
+        String where = helper.KEY_USER+"=?";
+        String[] whereArgs = {un};
         String[] KEYS = new String[]{friendsHelper.KEY_PENDEMAIL};
         Cursor c = dbs.query(true, friendsHelper.TABLE_NAME,KEYS,where,whereArgs,null,null,null,null);
         if(c.getCount() <= 0){
@@ -97,7 +134,7 @@ public class friendsDatabase {
 
         private static final String DATABASE_NAME = "friendslist";
         public static final String TABLE_NAME = "FRIENDS_TABLE";
-        private static final int DATABASE_VERSION = 2;
+        private static final int DATABASE_VERSION = 3;
 
         public static final String KEY_ID = "_id";
         public static final String KEY_USER = "_user";

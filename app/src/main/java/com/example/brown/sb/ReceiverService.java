@@ -12,7 +12,6 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.app.NotificationCompat;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -274,7 +273,7 @@ public class ReceiverService extends Service {
         }
 
         public void sendNotification(String clss) {
-            SANotification.setSmallIcon(R.drawable.icon3);
+            SANotification.setSmallIcon(R.drawable.cap);
             SANotification.setTicker("New Friend Request");
             SANotification.setWhen(System.currentTimeMillis());
             SANotification.setContentTitle(clss + " wants to add you");
@@ -363,7 +362,7 @@ public class ReceiverService extends Service {
     }
 
     public void sendNotification(String clss) {
-        SANotification.setSmallIcon(R.drawable.icon3);
+        SANotification.setSmallIcon(R.drawable.cap);
         SANotification.setTicker("New Friend Request");
         SANotification.setWhen(System.currentTimeMillis());
         SANotification.setContentTitle(clss + " wants to add you");

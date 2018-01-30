@@ -53,6 +53,9 @@ public class friends_list extends Fragment {
         db = frDatabase.helper.getReadableDatabase();
         frDatabase.open();
 
+        Intent friendService = new Intent(getContext(),FriendService.class);
+        getContext().startService(friendService);
+
         fr = "";
         pReq = (TextView)getActivity().findViewById(R.id.pRequests);
         pReq.setOnClickListener(new View.OnClickListener() {

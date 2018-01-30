@@ -130,7 +130,7 @@ public class home_screen extends Fragment implements OnMapReadyCallback {
         List<Fragment> fragments = new Vector<>();
         fragments.add(Fragment.instantiate(getContext(),class_list.class.getName()));
         fragments.add(Fragment.instantiate(getContext(),assignment_list.class.getName()));
-        fragments.add(Fragment.instantiate(getContext(),friends_list.class.getName()));
+        fragments.add(Fragment.instantiate(getContext(),pending_friends.class.getName()));
 //        fragments.add(Fragment.instantiate(getContext(),home_map.class.getName()));
         pagerAdapter = new pager_adapter(getChildFragmentManager(),fragments);
 
