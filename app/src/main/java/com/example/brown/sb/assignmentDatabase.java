@@ -33,6 +33,32 @@ public class assignmentDatabase {
         return c;
     }
 
+    //Retrieves assignments from database ordered from earliest to latest
+    public Cursor getEarliestAssignments(String un){
+        String where = assignmentHelper.KEY_USER + "=?";
+        String[] whereArgs = {un};
+        String order = assignmentHelper.KEY_TIMEIN +" ASC";
+        String[] ALL_KEYS = new String[]{assignmentHelper.KEY_ID, assignmentHelper.KEY_COURSE, assignmentHelper.KEY_SUBJECT, assignmentHelper.KEY_NAME,assignmentHelper.KEY_TYPE, assignmentHelper.KEY_TIMEIN};
+        Cursor c = db.query(true, assignmentHelper.TABLE_NAME, ALL_KEYS, where, whereArgs, null, null, order, null);
+        if (c != null){
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    //Queries assignments from database ordered from latest to earliest
+    public Cursor getLastAssignments(String un){
+        String where = assignmentHelper.KEY_USER + "=?";
+        String[] whereArgs = {un};
+        String order = assignmentHelper.KEY_TIMEIN +" DESC";
+        String[] ALL_KEYS = new String[]{assignmentHelper.KEY_ID, assignmentHelper.KEY_COURSE, assignmentHelper.KEY_SUBJECT, assignmentHelper.KEY_NAME,assignmentHelper.KEY_TYPE, assignmentHelper.KEY_TIMEIN};
+        Cursor c = db.query(true, assignmentHelper.TABLE_NAME, ALL_KEYS, where, whereArgs, null, null, order, null);
+        if (c != null){
+            c.moveToFirst();
+        }
+        return c;
+    }
+
     public Cursor getReminders(){
         String where = assignmentHelper.KEY_TYPE+"=?";
         String[] whereArgs = {"Reminder"};

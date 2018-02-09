@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class pending_friends extends Fragment {
         });
 
         final String user = getActivity().getSharedPreferences("logInfo",getActivity().MODE_PRIVATE).getString("username","");
+        Log.d("TAG",user);
         cursor = fb.getAllPending(user);
         String[] fromFieldNames = new String[]{fb.helper.KEY_PENDNAME, fb.helper.KEY_PENDEMAIL};
         int[] twoViewIds = new int[]{R.id.frName,R.id.frEmail};

@@ -88,12 +88,13 @@ public class FriendService extends Service {
                     JSONObject jsonObject = ja.getJSONObject(count);
                     count++;
 
+                    //if(!fb.checkIfExists(un,jsonObject.getString(KEY_USER_TAGS))){
+                        fb.insertPending(un, jsonObject.getString(KEY_USER_TAG), jsonObject.getString(KEY_USER_TAGS));
 
-                    fb.insertPending(un,jsonObject.getString(KEY_USER_TAGS),jsonObject.getString(KEY_USER_TAG));
-
-                    Log.d("DATABASE",fb.getAllPending("Michael Brown").toString());
-                    Log.d("JSON Obj",jsonObject.getString(KEY_USER_TAGS));
-                    Log.d("JSON",jsonObject.getString("requester_name"));
+                        Log.d("DATABASE", fb.getAllPending("Michael Brown").toString());
+                        Log.d("JSON Obj", jsonObject.getString(KEY_USER_TAGS));
+                        Log.d("JSON", jsonObject.getString("requester_name"));
+                    //}
                 }
 
                 Log.d("JSON_Strin",jsonString);
@@ -112,12 +113,12 @@ public class FriendService extends Service {
 
         @Override
         protected void onPreExecute() {
-            FR = "http://gradebook2go.000webhostapp.com/stack.php";
+            un = getSharedPreferences("logInfo",MODE_PRIVATE).getString("username","");
+            FR = "http://gradebook2go.000webhostapp.com/stack.php?email="+un;
             fb = new friendsDatabase(mContext);
             dbs = fb.helper.getReadableDatabase();
             fb.open();
 
-            un = getSharedPreferences("logInfo",MODE_PRIVATE).getString("username","");
             Log.d("Username",un);
         }
 

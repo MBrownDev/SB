@@ -66,11 +66,11 @@ public class friendsDatabase {
         return c;
     }
 
-    public boolean checkIfExists(String email){
+    public boolean checkIfExists(String un, String email){
         open();
 
-        String where = helper.KEY_PENDEMAIL+"=?";
-        String[] whereArgs = {email};
+        String where = helper.KEY_USER+"=? AND " +helper.KEY_PENDEMAIL+"=?";
+        String[] whereArgs = {un,email};
         String[] KEYS = new String[]{friendsHelper.KEY_PENDEMAIL};
         Cursor c = dbs.query(true, friendsHelper.TABLE_NAME,KEYS,where,whereArgs,null,null,null,null);
         if(c.getCount() <= 0){
@@ -134,7 +134,7 @@ public class friendsDatabase {
 
         private static final String DATABASE_NAME = "friendslist";
         public static final String TABLE_NAME = "FRIENDS_TABLE";
-        private static final int DATABASE_VERSION = 3;
+        private static final int DATABASE_VERSION = 4;
 
         public static final String KEY_ID = "_id";
         public static final String KEY_USER = "_user";

@@ -96,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements CardStack.CardEve
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        if(fHelper.checkIfEmpty(em)) {
+            friendWindow();
+        }
     }
 
     public void openData(){
@@ -202,19 +205,23 @@ public class MainActivity extends AppCompatActivity implements CardStack.CardEve
     }
 
     public void friendWindow(){
-        if(!fHelper.checkIfEmpty(nm)) {
-            Dialog dialog = new Dialog(this);
+        if(!fHelper.checkIfEmpty(em)) {
+            final Dialog dialog = new Dialog(this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(R.layout.card_layout);
-            dialog.show();
+            dialog.setContentView(R.layout.stack);
+
+            TextView name = (TextView)dialog.findViewById(R.id.name);
+            TextView email = (TextView)dialog.findViewById(R.id.email);
 
             cardAdapter = new CardAdapter(this, 0);
-            cardStack = (CardStack) findViewById(R.id.cardStack);
+            cardStack = (CardStack) dialog.findViewById(R.id.cardStack);
             cardStack.setContentResource(R.layout.card_layout);
             cardStack.setStackMargin(20);
             cardStack.setAdapter(cardAdapter);
 
             cardStack.setListener(this);
+
+            dialog.show();
         }
     }
 

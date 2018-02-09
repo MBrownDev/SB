@@ -51,8 +51,10 @@ public class assignment_list extends Fragment {
 
         assignList = (ListView)getActivity().findViewById(R.id.assign_list);
         Cursor cursor = asDatabse.getAllAssignments(user);
-        String[] fieldNames = new String[]{asDatabse.helper.KEY_ID,asDatabse.helper.KEY_COURSE, asDatabse.helper.KEY_NAME,asDatabse.helper.KEY_SUBJECT,asDatabse.helper.KEY_TIMEIN};
-        int[] twoViewIds = new int[]{R.id.id , R.id.item_header, R.id.item_name, R.id.item_time, R.id.dotw};
+        final Cursor c2 = asDatabse.getEarliestAssignments(user);
+        final Cursor c3 = asDatabse.getLastAssignments(user);
+        final String[] fieldNames = new String[]{asDatabse.helper.KEY_ID,asDatabse.helper.KEY_COURSE, asDatabse.helper.KEY_NAME,asDatabse.helper.KEY_SUBJECT,asDatabse.helper.KEY_TIMEIN};
+        final int[] twoViewIds = new int[]{R.id.id , R.id.item_header, R.id.item_name, R.id.item_time, R.id.dotw};
         cursorAdapter = new SimpleCursorAdapter(getContext(),R.layout.assignment_item,cursor,fieldNames,twoViewIds,0);
 
         assignList.setAdapter(cursorAdapter);
@@ -68,8 +70,12 @@ public class assignment_list extends Fragment {
                         assignList.setAdapter(cursorAdapter);
                         break;
                     case "Soonest Due":
+                        cursorAdapter = new SimpleCursorAdapter(getContext(),R.layout.assignment_item,c2,fieldNames,twoViewIds);
+                        assignList.setAdapter(cursorAdapter);
                         break;
                     case "Lastest Due":
+                        cursorAdapter = new SimpleCursorAdapter(getContext(),R.layout.assignment_item,c3,fieldNames,twoViewIds);
+                        assignList.setAdapter(cursorAdapter);
                         break;
                 }
             }

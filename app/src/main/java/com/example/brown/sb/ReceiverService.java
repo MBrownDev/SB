@@ -78,7 +78,7 @@ public class ReceiverService extends Service {
         //String un = getSharedPreferences("logInfo",MODE_PRIVATE).getString("name","");
         String fr = getSharedPreferences("friendInfo",MODE_PRIVATE).getString("pendingFriend","");
         String ee = getSharedPreferences("friendInfo",MODE_PRIVATE).getString("pendingEmail","");
-        exist = frDatabase.checkIfExists(ee);
+        exist = frDatabase.checkIfExists(email,ee);
         if(exist == false){
             frDatabase.insertPending(email,fr,ee);
         }
