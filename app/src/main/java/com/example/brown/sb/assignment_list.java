@@ -59,6 +59,7 @@ public class assignment_list extends Fragment {
 
         assignList.setAdapter(cursorAdapter);
 
+        //Spinner selections switch the order of assignment list
         lists.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -87,6 +88,7 @@ public class assignment_list extends Fragment {
         });
     }
 
+    //Populates spinner with sorting options
     public void loadSpinner(){
 
         String[] sorts = new String[]{"Standard","Soonest Due","Latest Due"};

@@ -73,6 +73,7 @@ public class add_assignment extends Fragment implements AdapterView.OnItemClickL
         asHelper.open();
     }
 
+    //Loads spinner; Queries items from Course database and initializes adapters
     public void loadSpinner(){
         final String user = getActivity().getSharedPreferences("logInfo",Context.MODE_PRIVATE).getString("username","");
         List<String> subs = cdHelper.getAllSubjects();

@@ -92,6 +92,7 @@ public class home_map extends Fragment implements OnMapReadyCallback {
         two.start();
     }
 
+    //Thread retrieves longitude from database
     public void getLng(){
         try
         {
@@ -142,6 +143,8 @@ public class home_map extends Fragment implements OnMapReadyCallback {
             e.printStackTrace();
         }
     }
+
+    //Thread retrieves latitude from database
     private void getLat(){
         try
         {
@@ -229,6 +232,7 @@ public class home_map extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
+        //Uses user's latitude and longitude to create place marker
         mMap.addMarker(new MarkerOptions().position(cl).title("I'm Here"));
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cl,17));

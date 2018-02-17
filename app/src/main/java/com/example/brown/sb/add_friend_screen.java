@@ -275,7 +275,7 @@ public class add_friend_screen extends AppCompatActivity {
                         String un = getSharedPreferences("logInfo",MODE_PRIVATE).getString("name","");
                         String em = getSharedPreferences("logInfo",MODE_PRIVATE).getString("username","");
                         BackgroundRequestTask requestTask = new BackgroundRequestTask();
-                        frDatabase.insertFriend(s,t);
+                        frDatabase.insertFriend(em,s,t);
                         requestTask.execute(method,t,em,un);
 
                     }

@@ -76,14 +76,6 @@ public class home_screen extends Fragment implements OnMapReadyCallback {
 
         View v = inflater.inflate(R.layout.home_screen, container, false);
 
-//        mapView = (MapView) v.findViewById(R.id.mapView);
-//        mapView.onCreate(savedInstanceState);
-//        mapView.getMapAsync(this);
-//
-//        mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
-//                .findFragmentById(R.id.mapView);
-//        mapFragment.getMapAsync(this);
-
         pager = (ViewPager)v.findViewById(R.id.page_holder);
 
         return v;
@@ -103,35 +95,17 @@ public class home_screen extends Fragment implements OnMapReadyCallback {
         super.onActivityCreated(savedInstanceState);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
 
+        //Inflate frame with MapView fragment
         home_map hm = new home_map();
         FragmentTransaction tran = getActivity().getSupportFragmentManager().beginTransaction();
         tran.replace(R.id.frame,hm);
         tran.addToBackStack(null);
         tran.commit();
-//        Runnable lat = new Runnable() {
-//            @Override
-//            public void run() {
-//                getLat();
-//            }
-//        };
-//
-//        Runnable lng = new Runnable() {
-//            @Override
-//            public void run() {
-//                getLng();
-//            }
-//        };
-//
-//        Thread one = new Thread(lat);
-//        Thread two = new Thread(lng);
-//        one.start();
-//        two.start();
 
         List<Fragment> fragments = new Vector<>();
         fragments.add(Fragment.instantiate(getContext(),class_list.class.getName()));
         fragments.add(Fragment.instantiate(getContext(),assignment_list.class.getName()));
         fragments.add(Fragment.instantiate(getContext(),pending_friends.class.getName()));
-//        fragments.add(Fragment.instantiate(getContext(),home_map.class.getName()));
         pagerAdapter = new pager_adapter(getChildFragmentManager(),fragments);
 
         pager.setAdapter(new pager_adapter(getChildFragmentManager(),fragments));

@@ -98,16 +98,19 @@ public class friendsDatabase {
 
     public void deletePending(String un, String pe){
 
-        String deleteQuery = "DELETE FROM " + friendsHelper.TABLE_NAME + " WHERE " + friendsHelper.KEY_USER +" = "
-                + un + " AND " +friendsHelper.KEY_PENDEMAIL + " = " + pe;
+//        String deleteQuery = "DELETE FROM " + friendsHelper.TABLE_NAME + " WHERE " + friendsHelper.KEY_USER +" = "
+//                + un + " AND " +friendsHelper.KEY_PENDEMAIL + " = " + pe;
+//
+//        Cursor c = db.rawQuery(deleteQuery,null);
+        String where = helper.KEY_USER+"=? AND " +helper.KEY_PENDEMAIL+"=?";
+        String[] whereArgs = {un,pe};
+        db.delete(helper.TABLE_NAME, where, whereArgs);
 
-        Cursor c = db.rawQuery(deleteQuery,null);
-
-        if (c != null) {
-            c.moveToFirst();
-        }
-
-        c.close();
+//        if (c != null) {
+//            c.moveToFirst();
+//        }
+//
+//        c.close();
         db.close();
     }
 
@@ -121,9 +124,10 @@ public class friendsDatabase {
         return id;
     }
 
-    public long insertFriend(String name, String email){
+    public long insertFriend(String user, String name, String email){
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(friendsHelper.KEY_USER, user);
         contentValues.put(friendsHelper.KEY_NAME,name);
         contentValues.put(friendsHelper.KEY_EMAIL, email);
         long id = db.insert(friendsHelper.TABLE_NAME,null, contentValues);

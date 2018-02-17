@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Brown on 2/23/2017.
@@ -22,6 +23,7 @@ public class assignmentDatabase {
         return this;
     }
 
+    //Retrieves assignments in order they're submitted
     public Cursor getAllAssignments(String un){
         String where = assignmentHelper.KEY_USER +"=?";
         String[] whereArgs = {un};
@@ -159,7 +161,7 @@ public class assignmentDatabase {
                 db.execSQL(CREATE_TABLE);
                 MessageToast.message(context, "onCreate");
             }catch(SQLException e){
-                // MessageToast.message(context,""+e);
+                Log.d("Exception",""+e);
             }
         }
 
@@ -170,7 +172,7 @@ public class assignmentDatabase {
                 db.execSQL(DROP_TABLE);
                 onCreate(db);
             }catch(SQLException e){
-                // MessageToast.message(context,""+e);
+                Log.d("Exception",""+e);
             }
         }
     }
